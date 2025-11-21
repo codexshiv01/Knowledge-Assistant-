@@ -1,0 +1,254 @@
+{
+  "info": {
+    "name": "Knowledge Assistant API",
+    "description": "API collection for testing the Knowledge Assistant RAG system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Upload Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "title",
+                  "value": "Science Class IX",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/documents/upload/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "documents", "upload", ""]
+            },
+            "description": "Upload a document (PDF, Markdown, or Text file) to the knowledge base"
+          }
+        },
+        {
+          "name": "List Documents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/documents/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "documents", ""]
+            },
+            "description": "Get list of all uploaded documents"
+          }
+        },
+        {
+          "name": "Get Document Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/documents/1/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "documents", "1", ""]
+            },
+            "description": "Get details of a specific document"
+          }
+        },
+        {
+          "name": "Delete Document",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/documents/1/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "documents", "1", ""]
+            },
+            "description": "Delete a document from the knowledge base"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Questions",
+      "item": [
+        {
+          "name": "Ask Question - Mitochondria",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What is the function of mitochondria?\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/ask-question/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "ask-question", ""]
+            },
+            "description": "Ask a question about cell biology"
+          }
+        },
+        {
+          "name": "Ask Question - Newton's Law",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"Explain Newton's first law of motion\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/ask-question/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "ask-question", ""]
+            },
+            "description": "Ask a question about physics"
+          }
+        },
+        {
+          "name": "Ask Question - Tissues",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What are the different types of animal tissues?\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/ask-question/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "ask-question", ""]
+            },
+            "description": "Ask a question about biology"
+          }
+        },
+        {
+          "name": "Ask Question - Molecules",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What is a molecule and what are its types?\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/ask-question/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "ask-question", ""]
+            },
+            "description": "Ask a question about chemistry"
+          }
+        },
+        {
+          "name": "Ask Question - Energy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What is the law of conservation of energy?\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/ask-question/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "ask-question", ""]
+            },
+            "description": "Ask a question about energy"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Query History",
+      "item": [
+        {
+          "name": "Get Query History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/queries/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "queries", ""]
+            },
+            "description": "Get history of all questions and answers"
+          }
+        }
+      ]
+    },
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Get System Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/stats/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "stats", ""]
+            },
+            "description": "Get system statistics including vector store info, document count, and query count"
+          }
+        }
+      ]
+    }
+  ]
+}
