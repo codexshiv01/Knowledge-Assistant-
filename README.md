@@ -9,7 +9,7 @@ A Django-based backend system that powers a Knowledge Assistant using Retrieval-
 - **Vector Embeddings**: Using sentence-transformers for high-quality embeddings
 - **FAISS Vector Store**: Fast similarity search for relevant context retrieval
 - **RAG Pipeline**: Retrieval-Augmented Generation to minimize hallucinations
-- **OpenAI Integration**: GPT-3.5-turbo for natural language responses
+- **LLM Integration**: Support for Local Models (HuggingFace Transformers) and OpenAI
 - **Query Logging**: Track all questions and answers with response times
 - **RESTful API**: Clean API endpoints using Django REST Framework
 
@@ -26,7 +26,7 @@ User Question
      ↓
 [Prompt Construction]
      ↓
-[LLM Query (OpenAI)]
+[LLM Query (Local/OpenAI)]
      ↓
 [Response + Sources]
 ```
@@ -34,8 +34,9 @@ User Question
 ## 📋 Requirements
 
 - Python 3.8+
-- OpenAI API Key
 - 2GB+ RAM (for embedding models)
+- Optional: OpenAI API Key (for cloud LLM)
+- Optional: 4GB+ RAM (for local LLM)
 
 ## 🚀 Quick Start
 
@@ -68,12 +69,17 @@ DJANGO_SECRET_KEY=your-secret-key-here
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
 
-# IMPORTANT: Add your OpenAI API key
-OPENAI_API_KEY=sk-your-openai-api-key-here
+# Local Model Configuration (Default)
+USE_HUGGINGFACE=True
+USE_LOCAL_MODEL=True
+LLM_MODEL=google/flan-t5-small
 
-# Optional: Customize these settings
+# Optional: OpenAI Configuration
+# USE_HUGGINGFACE=False
+# OPENAI_API_KEY=sk-your-openai-api-key-here
+
+# Embedding Settings
 EMBEDDING_MODEL=all-MiniLM-L6-v2
-LLM_MODEL=gpt-3.5-turbo
 CHUNK_SIZE=500
 CHUNK_OVERLAP=50
 TOP_K_RESULTS=3
@@ -287,7 +293,13 @@ EMBEDDING_MODEL=all-MiniLM-L6-v2  # Fast, 384 dimensions
 ```
 
 ### LLM Model
-Change the OpenAI model:
+**Local Models:**
+```env
+LLM_MODEL=google/flan-t5-small  # Fast, low RAM (Default)
+# LLM_MODEL=google/flan-t5-base   # Better quality, ~1GB RAM
+```
+
+**OpenAI Models:**
 ```env
 LLM_MODEL=gpt-3.5-turbo  # Fast and cost-effective
 # LLM_MODEL=gpt-4  # Better quality, higher cost
@@ -381,4 +393,4 @@ For questions or issues, please open an issue on the repository.
 
 ---
 
-**Built with ❤️ using Django, OpenAI, and FAISS**
+**Built with ❤️ using Django, Transformers, and FAISS**
